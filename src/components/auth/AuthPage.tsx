@@ -229,6 +229,17 @@ const AuthPage: React.FC = () => {
               onClick={() => {
                 setIsLogin(!isLogin);
                 setFormData({ email: '', password: '', confirmPassword: '', name: '' });
-              };
+              }}
+              className="text-blue-600 hover:text-blue-700"
+            >
+              {isLogin ? 'Crear cuenta nueva' : 'Iniciar sesión'}
+            </Button>
+            <p className="text-xs text-gray-400 mt-4">v2.2 - Ready for Admin</p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
 
-            export default AuthPage;
+export default AuthPage;
