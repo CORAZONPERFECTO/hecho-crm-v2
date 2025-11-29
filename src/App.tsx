@@ -1,51 +1,34 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Toaster } from '@/components/ui/toaster';
-import { AuthProvider } from '@/hooks/useAuth';
-import AuthPage from '@/components/auth/AuthPage';
-import ProtectedRoute from '@/components/auth/ProtectedRoute';
-import Index from '@/pages/Index';
-import SharedTicket from '@/pages/SharedTicket';
-import NotFound from '@/pages/NotFound';
-import TechnicianDashboard from '@/pages/TechnicianDashboard';
-import TestTechnician from '@/pages/TestTechnician';
-import './App.css';
-import OfflineSyncManager from '@/components/OfflineSyncManager';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Toaster } from "@/components/ui/toaster";
+
+// Placeholder components
+const Dashboard = () => (
+    <div className="p-8">
+        <h1 className="text-2xl font-bold mb-4">Nexus Growth Hub</h1>
+        <p className="text-gray-600">Sistema reconstruido con Firebase y Vercel.</p>
+        <p className="text-sm text-gray-400 mt-2">Fase 1: Inicialización completada.</p>
+    </div>
+);
+
+const Auth = () => (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="p-8 bg-white rounded-lg shadow-md">
+            <h1 className="text-xl font-bold mb-4">Autenticación</h1>
+            <p>Próximamente...</p>
+        </div>
+    </div>
+);
 
 function App() {
-  return (
-    <AuthProvider>
-      <Router>
-        <div className="min-h-screen bg-background">
-          <Routes>
-            <Route path="/auth" element={<AuthPage />} />
-            <Route path="/shared/:token" element={<SharedTicket />} />
-            <Route path="/shared-ticket/:token" element={<SharedTicket />} />
-
-            {/* Ruta de técnico SIN protección para debugging */}
-            <Route path="/technician" element={<TestTechnician />} />
-            <Route path="/technician/*" element={<TestTechnician />} />
-
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute allowedRoles={['admin', 'manager', 'contador', 'asistente', 'supervisor']}>
-                  <Index />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/404" element={<NotFound />} />
-
-            {/* Catch-all debe ir al final */}
-            <Route path="*" element={<Navigate to="/404" replace />} />
-          </Routes>
-          <Toaster />
-          {/* Agregar el administrador de sincronización offline */}
-          {/* <OfflineSyncManager /> */}
-        </div>
-      </Router>
-    </AuthProvider>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/auth" element={<Auth />} />
+            </Routes>
+            <Toaster />
+        </BrowserRouter>
+    );
 }
 
 export default App;
