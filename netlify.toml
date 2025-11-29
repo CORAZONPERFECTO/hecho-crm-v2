@@ -1,0 +1,8 @@
+[build]
+  publish = "dist"
+  command = "npm run build && cp _redirects dist/_redirects"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

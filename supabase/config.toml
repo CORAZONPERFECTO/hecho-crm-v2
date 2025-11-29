@@ -1,0 +1,7 @@
+project_id = "vwyquuwxhwgvzageqkww"
+
+[functions.format-technical-report]
+verify_jwt = false
+
+[functions.ai-assistant]
+verify_jwt = false
